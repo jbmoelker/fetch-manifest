@@ -4,6 +4,7 @@ const { parse: parseUrl, URL } = require('url')
 
 module.exports = async (req, res) => {
     const siteUrl = parseUrl(req.url, true).query.url
+    res.setHeader('Access-Control-Allow-Origin', '*')
 
     if (!siteUrl) {
         return {

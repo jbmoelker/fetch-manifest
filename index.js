@@ -7,24 +7,37 @@ module.exports = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
 
     if (!siteUrl) {
-        return {
-            error: '`url` search query parameter is required.'
-        }
+        return { error: '`url` search query parameter is required.' }
     }
 
-    const html = await request(siteUrl)
+    let html
+    try {
+        html = await request(siteUrl)
+    } catch (err) {
+        return { error: `Unable to fetch webpage from '${siteUrl}'` }
+    }
+
     const $ = cheerio.load(html)
     const manifestHref = $('link[rel="manifest"]').attr('href')
 
     if (!manifestHref) {
-        return {
-            error: 'Provided webpage (`url`) has no web app manifest.'
-        }
+        return { error: `'${siteUrl}' has no web app manifest.` }
     }
 
     const manifestUrl = (new URL(manifestHref, siteUrl)).href
-    const manifestContent = await request(manifestUrl)
-    const manifest = JSON.parse(manifestContent)
+    let manifestContent
+    try {
+        manifestContent = await request(manifestUrl)
+    } catch (err) {
+        return { error: `Unable to fetch web app manifest from '${manifestUrl}'` }
+    }
+
+    let manifest
+    try {
+        manifest = JSON.parse(manifestContent)
+    } catch (err) {
+        return { error: `'${manifestUrl}' is not a valid web app manifest.` }
+    }
 
     return {
         manifest

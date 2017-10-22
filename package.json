@@ -2,6 +2,7 @@
   "name": "fetch-manifest",
   "version": "1.0.0",
   "description": "Micro service to fetch the web app manifest of any website or PWA.",
+  "homepage": "https://github.com/jbmoelker/fetch-manifest",
   "main": "index.js",
   "scripts": {
     "deploy": "now -e NODE_ENV=production && now alias",
@@ -12,6 +13,10 @@
   "keywords": ["micro service", "manifest", "PWA", "web app"],
   "author": "Jasper Moelker <jasper@voorhoede.nl> (https://voorhoede.nl/)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbmoelker/fetch-manifest.git"
+  },
   "dependencies": {
     "cheerio": "1.0.0-rc.2",
     "micro": "9.0.0",

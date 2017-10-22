@@ -7,7 +7,19 @@ The server fetches the given webpage, finds the manifest linked on the page (`li
 Demo: [`fetch-manifest.now.sh/?url=https://www.voorhoede.nl`](https://fetch-manifest.now.sh/?url=https://www.voorhoede.nl).
 
 
-## Parameters
+## Table of contents
+
+* [Requests](#requests)
+  * [Parameters](#parameters)
+* [Responses](#responses)
+  * [Successful response](#successful-response)
+  * [Error response](#error-response)
+* [Development](#development)
+
+
+## Requests
+
+### Parameters
 
 The service can be configured with the following URL query parameters:
 
@@ -16,7 +28,9 @@ Parameter | Description | Example
 `url` (required) | URL of the web page to find and return the manifest of. | `url=https://www.voorhoede.nl`
 
 
-## Structure of successful response
+## Responses
+
+### Successful response
 
 Successful responses are indicated with a 200 HTTP code and a JSON-based payload containing the `manifestUrl` where the web app manifest was found and the `manifest` itself. Example [`?url=https://www.voorhoede.nl`](https://fetch-manifest.now.sh/?url=https://www.voorhoede.nl) responds with:
 
@@ -49,7 +63,7 @@ Successful responses are indicated with a 200 HTTP code and a JSON-based payload
 ```
 
 
-## Structure of error response
+### Error response
 
 Error responses are served with a non-200-series HTTP code and a JSON-based payload containing a list of `errors`. The `errors/code` node will indicate a `CAPS_CASE` constant error code you can programmatically consume to make resolution decisions from. The `errors/message` node provides a human-readable description of the error. Additional fields may be attached to indicate finer-grained detail about the error.
 
@@ -59,6 +73,21 @@ HTTP code | Error code | Extra info
 `404` | `MISSING_MANIFEST` | 
 `500` | `FETCH_ERROR` | 
 `500` | `INVALID_MANIFEST` | 
+
+Example:
+
+```json
+{
+  "errors": [
+    {
+      "code": "MISSING_PARAMETER",
+      "parameter": "url",
+      "message": "'url' query parameter is required.",
+      "docs": "https://github.com/jbmoelker/fetch-manifest#parameters"
+    }
+  ]
+}
+```
 
 
 ## Development

@@ -16,6 +16,51 @@ Parameter | Description | Example
 `url` (required) | URL of the web page to find and return the manifest of. | `url=https://www.voorhoede.nl`
 
 
+## Structure of successful response
+
+Successful responses are indicated with a 200 HTTP code and a JSON-based payload containing the `manifestUrl` where the web app manifest was found and the `manifest` itself. Example [`?url=https://www.voorhoede.nl`](https://fetch-manifest.now.sh/?url=https://www.voorhoede.nl) responds with:
+
+```json
+{
+  "manifestUrl": "https://www.voorhoede.nl/assets/manifest-d110dc52f9.json",
+  "manifest": {
+    "short_name": "De Voorhoede",
+    "name": "De Voorhoede Front-end Developers",
+    "start_url": "/?homescreen=true",
+    "display": "standalone",
+    "orientation": "portrait",
+    "gcm_sender_id": "482941778795",
+    "theme_color": "#12353C",
+    "background_color": "#E7D81D",
+    "icons": [
+      {
+        "src": "/assets/images/logo-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      },
+      {
+        "src": "/assets/images/logo-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+}
+```
+
+
+## Structure of error response
+
+Error responses are served with a non-200-series HTTP code and a JSON-based payload containing a list of `errors`. The `errors/code` node will indicate a `CAPS_CASE` constant error code you can programmatically consume to make resolution decisions from. The `errors/message` node provides a human-readable description of the error. Additional fields may be attached to indicate finer-grained detail about the error.
+
+HTTP code | Error code | Extra info
+--- | --- | ---
+`400` | `MISSING_PARAMETER` | `error.parameter` contains parameter name.
+`404` | `MISSING_MANIFEST` | 
+`500` | `FETCH_ERROR` | 
+`500` | `INVALID_MANIFEST` | 
+
+
 ## Development
 
 This project requires [Node.js](http://nodejs.org/) (>= v8) and [npm](https://npmjs.org/).

@@ -15,8 +15,19 @@ function missingParameterError (parameter, type = 'query') {
 
 module.exports = async (req, res) => {
     const siteUrl = parseUrl(req.url, true).query.url
-    res.setHeader('Access-Control-Allow-Origin', '*')
     const errors = []
+
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Request-Method', 'GET')
+
+    if (req.method !== 'GET') {
+        return send(res, 405, { errors: [
+            {
+                code: 'METHOD_NOT_ALLOWED',
+                message: `'${req.method}' is not allowed. Only GET requests are supported.`
+            }
+        ]})
+    }
 
     if (!siteUrl) {
         errors.push(missingParameterError('url'))

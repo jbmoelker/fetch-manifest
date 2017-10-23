@@ -71,6 +71,7 @@ HTTP code | Error code | Extra info
 --- | --- | ---
 `400` | `MISSING_PARAMETER` | `error.parameter` contains parameter name.
 `404` | `MISSING_MANIFEST` | 
+`405` | `METHOD_NOT_ALLOWED` | 
 `500` | `FETCH_ERROR` | 
 `500` | `INVALID_MANIFEST` | 
 
@@ -92,7 +93,7 @@ Example:
 
 ## Development
 
-This project requires [Node.js](http://nodejs.org/) (>= v8) and [npm](https://npmjs.org/).
+This project requires [Node.js](http://nodejs.org/) (>= v8) and [npm](https://npmjs.org/) (comes with Node).
 
 After installing dependencies using `npm install` the following scripts are available on all exercise branches:
 

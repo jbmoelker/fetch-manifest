@@ -10,12 +10,20 @@
     "start": "micro $npm_package_main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["micro service", "manifest", "PWA", "web app"],
+  "keywords": [
+    "micro service",
+    "manifest",
+    "PWA",
+    "web app"
+  ],
   "author": "Jasper Moelker <jasper@voorhoede.nl> (https://voorhoede.nl/)",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jbmoelker/fetch-manifest.git"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.2",

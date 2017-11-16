@@ -1,5 +1,5 @@
 {
-  "name": "fetch-manifest",
+  "name": "@jbmoelker/fetch-manifest",
   "version": "1.0.0",
   "description": "Micro service to fetch the web app manifest of any website or PWA.",
   "homepage": "https://github.com/jbmoelker/fetch-manifest",
@@ -8,7 +8,8 @@
     "deploy": "now -e NODE_ENV=production && now alias",
     "dev": "micro-dev $npm_package_main",
     "start": "micro $npm_package_main",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava test.js",
+    "watch": "npm run test -- --watch"
   },
   "keywords": [
     "micro service",
@@ -27,12 +28,14 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.2",
-    "micro": "9.0.0",
-    "request": "2.83.0",
-    "request-promise": "4.2.2"
+    "micro": "9.0.0"
   },
   "devDependencies": {
+    "ava": "0.23.0",
     "micro-dev": "1.2.3",
-    "now": "8.3.10"
+    "now": "8.3.10",
+    "request": "2.83.0",
+    "request-promise": "4.2.2",
+    "test-listen": "1.0.2"
   }
 }

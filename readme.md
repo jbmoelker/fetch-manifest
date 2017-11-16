@@ -1,4 +1,4 @@
-# Fetch manifest
+# Fetch manifest [![Build Status](https://travis-ci.org/jbmoelker/fetch-manifest.svg?branch=master)](https://travis-ci.org/jbmoelker/fetch-manifest) [![Coverage Status](https://coveralls.io/repos/github/jbmoelker/fetch-manifest/badge.svg?branch=master)](https://coveralls.io/github/jbmoelker/fetch-manifest?branch=master) [![npm fetch-manifest package](https://img.shields.io/npm/v/@jbmoelker/fetch-manifest.svg)](https://npmjs.org/package/@jbmoelker/fetch-manifest)
 
 **Micro service to fetch the web app manifest of any website or PWA.**
 

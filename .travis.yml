@@ -5,8 +5,8 @@ cache:
   directories:
     - node_modules
 script:
-  - npm test
+  - npm run coverage
 after_success:
-  - npm run coverage && npm run coverage-report
+  - npm run coverage-report
 notifications:
   email: false
